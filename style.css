@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f6f1e7;
+    color: #241f1a;
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+}
+
+header, 
+footer {
+    padding: 24px 48px;
+}
+
+main {
+    display: grid;
+    grid-template-comlums: 1fr 320px;
+    gap: 24px;
+    padding: 0 48px 24px;
+}
+
+#chart-section {
+    grid-column: 1 / -1;
+}
