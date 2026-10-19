@@ -19,11 +19,151 @@ footer {
 
 main {
     display: grid;
-    grid-template-comlums: 1fr 320px;
+    grid-template-columns: 1fr 320px;
     gap: 24px;
     padding: 0 48px 24px;
 }
 
 #chart-section {
     grid-column: 1 / -1;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.1rem;
+    margin: 0 0 8px;
+}
+
+/* cards */
+#habits,
+#score-card,
+#how-scoring,
+#chart-section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px 28px;
+    box-shadow: 0 1px 2px rgba(36, 31, 26, 0.06), 0 8px 24px rgba(36, 31, 26, 0.05);
+}
+
+#score-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* habit list */
+#habit-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#habit-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid #ece4d4;
+    padding: 14px 0;
+}
+
+#habit-list label {
+    flex-grow: 1;
+    font-weight: 600;
+}
+
+#habit-list span{
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6f6659;
+    background: #f1ebdd;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+/* form */
+#add-form {
+    margin-top: 20px;
+}
+
+#add-form label {
+    display: block;
+    font-size: 0.8rem;
+    color: #6f6659;
+    margin-top: 10px;
+}
+
+#add-form input {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid #d9cfbd;
+    border-radius: 10px;
+}
+
+#add-form button {
+    font: inherit;
+    font-weight: 600;
+    background: #c96a46;
+    color: #ffffff;
+    border: 0;
+    border-radius: 10px;
+    padding: 11px 20px;
+    margin-top: 14px;
+    cursor: pointer;
+}
+
+#add-form button:hover {
+    background: #a9532f;
+}
+
+/* score */
+#score-card {
+    text-align: center;
+}
+
+#score-value {
+    font-family: Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #3f6656;
+}
+
+#score-meter {
+    width: 100%;
+    accent-color: #3f6656;
+}
+
+#how-scoring p{
+    color: #6f6659;
+    font-size: 0.9rem;
+}
+
+/* chart range buttons */
+#range-nav {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0 16px;
+}
+
+#range-nav button {
+    font: inherit;
+    font-weight: 600;
+    background: none;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    padding: 8px 4px;
+    color: #6f6659;
+    cursor: pointer;
+}
+
+#range-nav button:hover {
+    color: #241f1a;
+}
+
+#range-nav button.active {
+    color: #241f1a;
+    border-bottom-color: #c96a46;
 }
