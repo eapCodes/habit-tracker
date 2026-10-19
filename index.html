@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Habit Tracker</h1>
+        <p>CS 3311 &middot; Eduardo Paz</p>
+    </header>
+
+    <main>
+        <section id ="habits">
+            <h2>Todays's Habits</h2>
+
+            <ul id="habit-list">
+                <li>
+                    <input type="checkbox" id="habit-1">
+                    <label for="habit-1">Reading</label>
+                    <span>weight X3</span>
+                </li>
+            </ul>
+
+            <form id="add-form">
+                <h3> Add a Habit</h3>
+
+                <label for="habit-name">Habit name</label>
+                <input type="text" id="habit-name" maxlength="60" required>
+
+                <label for="habit-weight"> Weight (1-5)</label>
+                <input type="number" id="habit-weight" min="1" max="5" value="3" required>
+
+                <button type="submit">Add habit</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Habit Tracker &middot; CS 3311</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
