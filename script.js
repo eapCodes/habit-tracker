@@ -1,8 +1,4 @@
-let habits = [
-    { id: 1, name: "Reading", weight: 3, done: true },
-    { id: 2, name: "Exercise", weight: 2, done: true },
-    { id: 3, name: "Meditation", weight: 2, done: false },
-];
+let habits = [];
 
 function calcScore(list) {
     let earned = 0;
@@ -64,14 +60,29 @@ function render() {
     renderChart();
 }
 
+// ---------- Server (PHP + MySQL) ----------
+
+// READ path: load habits from MySQL
+async function loadHabits() {
+    try {
+        const res = await fetch("api/habits.php");
+        const rows = await res.json();
+        habits = rows.map(function (r) {
+            return { id: Number(r.id), name: r.name, weight: Number(r.weight), done: false };
+        });
+    } catch (err) {
+        console.error("Could not load habits:", err);
+    }
+    render();
+}
+
 // habit form
 
 const form = document.getElementById("add-form");
 const nameInput = document.getElementById("habit-name");
 const weightInput = document.getElementById("habit-weight");
-let nextId = 4;
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function (e) {
     e.preventDefault();
     const name = nameInput.value.trim();
     const weight = Number(weightInput.value);
@@ -97,8 +108,24 @@ form.addEventListener("submit", function (e) {
         return;
     }
 
-    habits.push({ id: nextId, name: name, weight: weight, done: false });
-    nextId++;
+    // WRITE path: save the habit in MySQL
+    try {
+        const res = await fetch("api/habits.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name, weight: weight }),
+        });
+        if (!res.ok) {
+            throw new Error("Server rejected the habit");
+        }
+        const saved = await res.json();
+        habits.push({ id: saved.id, name: saved.name, weight: saved.weight, done: false });
+    } catch (err) {
+        nameInput.setCustomValidity("Could not save the habit. Is Apache running?");
+        nameInput.reportValidity();
+        return;
+    }
+
     form.reset();
     weightInput.value = 3;
     render();
@@ -193,4 +220,4 @@ rangeButtons.forEach(function (btn) {
     });
 });
 
-render();
+loadHabits();
